@@ -187,6 +187,17 @@ window.onload = function() {
             var b = new Kona(0.1);
             scene.addChild(b);
         }
+        var label = new Label('0');
+        label.font = '24px helvetica';
+        game.rootScene.addChild(label);
+        var c = 0;
+        setInterval(function() {
+            label.text = c;
+            c = 0;
+        }, 1000);
+        game.rootScene.addEventListener('enterframe', function(e) {
+            c++;
+        });
     };
     game.start();
 };
