@@ -206,6 +206,7 @@ window.onload = function() {
             scene.addChild(b);
         }
         var label = new Label('0');
+        label.color = "white";
         label.font = '24px helvetica';
         game.rootScene.addChild(label);
         var c = 0;
