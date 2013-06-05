@@ -51,7 +51,8 @@ window.onload = function() {
     game.preload({
         kinoko : 'kinoko.dae',
         moon : "MoonMap_2500x1250.jpg",
-        star : "StarsMap_2500x1250.jpg"
+        star : "StarsMap_2500x1250.jpg",
+        texture : "iii_sympo_cg.jpg"
     });
     game.onload = function() {
         /**
@@ -78,7 +79,16 @@ window.onload = function() {
         //var ebone6 = new CubeAndCylinder(0.5 / 2);
         //scene.addChild(ebone6);
         ebone6 = game.assets["kinoko"].childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0];
-        console.log(ebone6);
+        ebone6.childNodes[0].mesh.texture.src = game.assets['texture'];
+        ebone6.childNodes[0].mesh.texture.ambient = [0.8, 0.8, 0.8, 1.0];
+        ebone6.childNodes[1].mesh.texture.src = game.assets['texture'];
+        ebone6.childNodes[1].mesh.texture.ambient = [0.8, 0.8, 0.8, 1.0];
+        ebone6.childNodes[2].mesh.texture.src = game.assets['texture'];
+        ebone6.childNodes[2].mesh.texture.ambient = [0.8, 0.8, 0.8, 1.0];
+        ebone6.childNodes[3].mesh.texture.src = game.assets['texture'];
+        ebone6.childNodes[3].mesh.texture.ambient = [0.8, 0.8, 0.8, 1.0];
+        game.assets["kinoko"].childNodes[1].childNodes[0].mesh.texture.src = game.assets['texture'];
+        game.assets["kinoko"].childNodes[1].childNodes[0].mesh.texture.ambient = [0.8, 0.8, 0.8, 1.0];
         var constraint = function(q) {
             mat = quat4.toMat4(q);
             y = Math.asin(-mat[8]);
