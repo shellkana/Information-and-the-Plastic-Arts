@@ -201,7 +201,7 @@ window.onload = function() {
                 ebone6.rotation = quat4.toMat4(bone6._globalrot);
             }
         });
-        for (var i = 0; i < 0; i++) {
+        for (var i = 0; i < 200; i++) {
             var b = new Kona(0.1);
             scene.addChild(b);
         }
