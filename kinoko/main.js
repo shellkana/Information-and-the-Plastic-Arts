@@ -62,7 +62,7 @@ window.onload = function() {
 
         var scene = new Scene3D();
         scene.getCamera().z = 80;
-        scene.getCamera().y = 80;
+        scene.getCamera().y = 800;
         scene.getCamera().centerY = 14.5;
         /*var ebone0 = new CubeAndCylinder(0.5 / 2);
         scene.addChild(ebone0);
@@ -110,7 +110,7 @@ window.onload = function() {
             mat4.multiply(mat, quat4.toMat4(tmpx));
             return quat4.set(mat3.toQuat4(mat4.toMat3(mat)), q);
         };
-        var moonsize = 100;
+        var moonsize = 300;
         var moon = new Sphere(moonsize);
         moon.rotateRoll(Math.PI / 2);
         moon.on('enterframe', function() {
@@ -123,7 +123,7 @@ window.onload = function() {
         moon.mesh.texture.diffuse = [1.0, 1.0, 0.8, 1.0];
         moon.mesh.texture.specular = [0.01, 0.0, 0.0, 1.0];
         scene.addChild(moon);
-        var sky = new Sphere(105);
+        var sky = new Sphere(305);
         sky.on('enterframe', function() {
             this.rotateYaw(0.001);
         });
@@ -161,6 +161,9 @@ window.onload = function() {
             effector._globalpos = effector._global;
         });
         game.on('enterframe', function() {
+            if (scene.getCamera().y > 40) {
+                scene.getCamera().y /= 1.01;
+            }
             if (game.input.up) {
                 effector.z -= 1;
                 effector._globalpos = effector._global;
