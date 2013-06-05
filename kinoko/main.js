@@ -49,7 +49,9 @@ var Kona = Class.create(Sphere, {
 window.onload = function() {
     game = new Game(1500, 1000);
     game.preload({
-        kinoko : 'kinoko.dae'
+        kinoko : 'kinoko.dae',
+        moon : "MoonMap_2500x1250.jpg",
+        star : "StarsMap_2500x1250.jpg"
     });
     game.onload = function() {
         /**
@@ -98,9 +100,25 @@ window.onload = function() {
             mat4.multiply(mat, quat4.toMat4(tmpx));
             return quat4.set(mat3.toQuat4(mat4.toMat3(mat)), q);
         };
-        var sky = new Sphere(250);
+        var moonsize = 100;
+        var moon = new Sphere(moonsize);
+        moon.rotateRoll(Math.PI / 2);
+        moon.on('enterframe', function() {
+            //this.rotateYaw(0.001);
+        });
+        moon.rotateYaw(Math.PI * 0.75);
+        moon.y = -moonsize;
+        moon.mesh.texture.src = game.assets["moon"];
+        moon.mesh.texture.ambient = [1.0, 1.0, 0.8, 1.0];
+        moon.mesh.texture.diffuse = [1.0, 1.0, 0.8, 1.0];
+        moon.mesh.texture.specular = [0.01, 0.0, 0.0, 1.0];
+        scene.addChild(moon);
+        var sky = new Sphere(105);
+        sky.on('enterframe', function() {
+            this.rotateYaw(0.001);
+        });
+        sky.mesh.texture.src = game.assets["star"];
         sky.mesh.reverse();
-        sky.mesh.setBaseColor('#00ffff');
         sky.mesh.texture.ambient = [1.0, 1.0, 1.0, 1.0];
         sky.mesh.texture.diffuse = [0.0, 0.0, 0.0, 1.0];
         sky.mesh.texture.specular = [0.0, 0.0, 0.0, 1.0];
@@ -183,7 +201,7 @@ window.onload = function() {
                 ebone6.rotation = quat4.toMat4(bone6._globalrot);
             }
         });
-        for (var i = 0; i < 200; i++) {
+        for (var i = 0; i < 0; i++) {
             var b = new Kona(0.1);
             scene.addChild(b);
         }
