@@ -16,6 +16,7 @@ var Kona = Class.create(Sphere, {
         this.sleep = Math.floor(Math.random() * 10);
         this.life = Math.floor(Math.random() * 50) + 10;
         this.mesh.setBaseColor(parseTempToColor(Math.random(), 1, 0));
+        this.air_res = 0.05;
         var v = mat4.multiplyVec3(ebone6.rotation, [0, 1, 0]);
         this.on('enterframe', function() {
             if (this.age % 70 === this.sleep) {
@@ -24,15 +25,16 @@ var Kona = Class.create(Sphere, {
                 this.vx = v[0];
                 this.vy = v[1];
                 this.vz = v[2];
-                this.ay = 0.3;
                 this.x = ebone6.x;
                 this.y = ebone6.y + 15;
                 this.z = ebone6.z;
                 this.ay = 0.1;
             }
             if (this.age % 70 > this.sleep) {
+                this.vx += -this.air_res * this.vx;
+                this.vz += -this.air_res * this.vz;
                 this.x += this.vx;
-                this.vy -= this.ay;
+                this.vy -= this.ay + this.air_res * this.vy;
                 this.y += this.vy;
                 this.z += this.vz;
             }
