@@ -1,1 +1,1 @@
-https://rawgithub.com/shellkana/Information-and-the-Plastic-Arts/master/kinoko/index.html
+http://shell.6.ql.bz/Information-and-the-Plastic-Arts/kinoko/index.html
